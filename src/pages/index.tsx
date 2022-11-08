@@ -4,16 +4,41 @@ import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import { useGetPokemon } from '../services/pokeApi/GET/useGetPokemon'
 
+import * as S from '../styles/pages/styles'
+
 const Home: NextPage = () => {
-  const [offsetPokemon, setOffsetPokemon] = useState<number>(20)
+  const [offsetPokemon, setOffsetPokemon] = useState<number>(0)
+  const [pokemons, setPokemons] = useState<any[]>([])
 
   const { pokemonsWithPagination } = useGetPokemon(offsetPokemon)
 
   useEffect(() => {
-    if (pokemonsWithPagination) {
-      console.log(pokemonsWithPagination)
+    setTimeout(() => {
+      setOffsetPokemon(20)
+    }, 100)
+  }, [])
+
+  useEffect(() => {
+    if (pokemonsWithPagination?.data?.results) {
+      addPokemonsToArray()
     }
   }, [pokemonsWithPagination])
+
+  function getMorePokemonWithPagination() {
+    if (pokemons) {
+      setOffsetPokemon(
+        pokemonsWithPagination.data.next[41] +
+          pokemonsWithPagination.data.next[42]
+      )
+    }
+  }
+
+  function addPokemonsToArray() {
+    let oldArray = pokemons
+    oldArray.push(...pokemonsWithPagination.data.results)
+    console.log(oldArray)
+    setPokemons(oldArray)
+  }
 
   return (
     <div className={styles.container}>
@@ -23,6 +48,18 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <p>teste</p>
+      <button
+        onClick={() => {
+          getMorePokemonWithPagination()
+        }}
+      >
+        Carregar mais pokemons
+      </button>
+      <S.Container className="DisplayGridPokemon">
+        {pokemons.map((row: any, key: number) => (
+          <p key={key}>{row.name}</p>
+        ))}
+      </S.Container>
     </div>
   )
 }
