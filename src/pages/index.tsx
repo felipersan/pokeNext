@@ -5,39 +5,35 @@ import styles from '../styles/Home.module.css'
 import { useGetPokemon } from '../services/pokeApi/GET/useGetPokemon'
 
 import * as S from '../styles/pages/styles'
+import { getPokemon, pokemonGeneric } from '../interfaces/API/GET'
+import CardPokemon from '../components/pages/CardPokemon'
 
 const Home: NextPage = () => {
-  const [offsetPokemon, setOffsetPokemon] = useState<number>(0)
+  const [offsetPokemon, setOffsetPokemon] = useState<number>(20)
+  const [oldCallToApi, setOldCallToApi] = useState<any>(null)
   const [pokemons, setPokemons] = useState<any[]>([])
 
   const { pokemonsWithPagination } = useGetPokemon(offsetPokemon)
 
   useEffect(() => {
-    setTimeout(() => {
-      setOffsetPokemon(20)
-    }, 100)
-  }, [])
-
-  useEffect(() => {
-    if (pokemonsWithPagination?.data?.results) {
-      addPokemonsToArray()
+    if (pokemonsWithPagination) {
+      addPokemonsToArray(pokemonsWithPagination)
+      setTimeout(() => {
+        setOldCallToApi(pokemonsWithPagination.data)
+      }, 200)
     }
   }, [pokemonsWithPagination])
 
-  function getMorePokemonWithPagination() {
-    if (pokemons) {
-      setOffsetPokemon(
-        pokemonsWithPagination.data.next[41] +
-          pokemonsWithPagination.data.next[42]
-      )
+  function addPokemonsToArray(pokemonsList: getPokemon) {
+    if (pokemons && pokemonsList && oldCallToApi !== pokemonsList.data) {
+      setPokemons(oldArray => [...oldArray, ...pokemonsList.data.results])
+    } else if (
+      !!pokemons &&
+      pokemonsList &&
+      oldCallToApi !== pokemonsList.data
+    ) {
+      setPokemons(pokemonsList.data.results)
     }
-  }
-
-  function addPokemonsToArray() {
-    let oldArray = pokemons
-    oldArray.push(...pokemonsWithPagination.data.results)
-    console.log(oldArray)
-    setPokemons(oldArray)
   }
 
   return (
@@ -50,14 +46,14 @@ const Home: NextPage = () => {
       <p>teste</p>
       <button
         onClick={() => {
-          getMorePokemonWithPagination()
+          setOffsetPokemon(offsetPokemon + 20)
         }}
       >
         Carregar mais pokemons
       </button>
       <S.Container className="DisplayGridPokemon">
         {pokemons.map((row: any, key: number) => (
-          <p key={key}>{row.name}</p>
+          <CardPokemon key={key} data={row as pokemonGeneric}></CardPokemon>
         ))}
       </S.Container>
     </div>

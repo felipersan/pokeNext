@@ -2,15 +2,15 @@ import { useQuery } from 'react-query'
 import { getPokemon } from '../../../interfaces/API/GET'
 import pokemonClass from '../index'
 
-export const useGetPokemon = (offset: number) => {
+export const useGetCompletePokemon = (name: string) => {
   const { data, isLoading, isError, isSuccess } = useQuery(
-    ['getPokemonWithPagination', offset],
+    ['getPokemonWithPagination', name],
     async () => {
-      return await pokemonClass.getPokemonWithPagination(offset)
+      return await pokemonClass.getCompletePokemon(name)
     }
   )
   return {
-    pokemonsWithPagination: data as getPokemon,
+    completePokemon: data as any,
     isLoadingReactions: isLoading as boolean,
     isErrorReactions: isError as boolean,
     isSuccessReactions: isSuccess as boolean | number

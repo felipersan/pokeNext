@@ -1,11 +1,24 @@
 import pokeAPI from '../pokeAPI'
 import { AxiosRequestConfig } from 'axios'
 import { useRouter } from 'next/router'
+import { getPokemon } from '../../interfaces/API/GET'
+import { response } from 'express'
 
 class pokemonClass {
   async getPokemonWithPagination(offset: number) {
     try {
-      const data = await pokeAPI.get(`pokemon?limit=20&offset=${offset}`)
+      const data: getPokemon = await pokeAPI.get(
+        `pokemon?limit=20&offset=${offset}`
+      )
+      return data
+    } catch (error) {
+      console.log('erro de autenticação ===========>', error)
+    }
+  }
+
+  async getCompletePokemon(name: string) {
+    try {
+      const data: getPokemon = await pokeAPI.get(`pokemon/${name}`)
       return data
     } catch (error) {
       console.log('erro de autenticação ===========>', error)
