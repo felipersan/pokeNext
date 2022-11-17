@@ -7,7 +7,7 @@ class pokemonClass {
   async getPokemonWithPagination(offset: number) {
     try {
       const data: getPokemon = await pokeAPI.get(
-        `pokemon?limit=20&offset=${offset}`
+        `pokemon?limit=50&offset=${offset}`
       )
       return data
     } catch (error) {
