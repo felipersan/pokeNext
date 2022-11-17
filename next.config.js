@@ -4,7 +4,8 @@ const nextConfig = {
   // https://nextjs.org/docs/advanced-features/compiler
   compiler: {
     // Enables the styled-components SWC transform
-    styledComponents: true
+    styledComponents: true,
+    // ignoreDuringBuilds: true,
   },images: {
     domains: ['raw.githubusercontent.com'],
 },

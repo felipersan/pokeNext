@@ -9,7 +9,9 @@ import { getPokemon, pokemonGeneric } from '../interfaces/API/GET'
 import CardPokemon from '../components/pages/CardPokemon'
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-const Home: NextPage = () => {
+
+
+const Home: NextPage = ({pokemonsArray}:any) => {
   const [offsetPokemon, setOffsetPokemon] = useState<number>(0)
   const [oldCallToApi, setOldCallToApi] = useState<any>(null)
   const [pokemons, setPokemons] = useState<any[]>([])

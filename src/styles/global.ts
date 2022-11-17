@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   --bgCard: #fff;
   --P1A: #121212;
   --P1B: #E0E0E0;
+  --P1C: #7d7d7d;
 
   --boxShadow: 0px 0px 5px -1px rgba(0,0,0,0.3);
 

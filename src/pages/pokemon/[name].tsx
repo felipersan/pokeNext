@@ -1,6 +1,7 @@
-import { AxiosResponse } from "axios";
 import { AnyARecord } from "dns";
 import Image from "next/image";
+import ImageCard from "../../components/pages/pokemon/ImageCard";
+import PrincipalInformation from "../../components/pages/pokemon/PrincipalInformation";
 import { searchPokemon } from "../../interfaces/API/GET";
 import API from "../../services/pokeAPI";
 
@@ -23,8 +24,8 @@ export async function getStaticProps(context: any) {
 export async function getStaticPaths() {
   let paths: any = [];
 
-  await API.get(`pokemon?limit=100000&offset=0`).then((response: any) => {
-    response.data.results.map((row: any) => {
+  await API.get(`pokemon?limit=200&offset=0`).then((response: any) => {
+    response.data.results.map((row: any, key:number) => {
       let newObject = {
         params: {
           name: row?.name,
@@ -44,22 +45,14 @@ export default function pokemonName({ pokemon }: any) {
   return (
     <Container>
       <div className="letSidePokemonDetails">
-        <div className="cardImagePokemon">
-          <div className="pokemonTypes">
-            {pokemon?.types.map((row: any) => {
-              return <span
-              className="cardTypePokemon"
-              >{row.type.name.toUpperCase()}</span>;
-            })}
-          </div>
-          <Image
-            alt={`imagem do pokemon ${pokemon?.name}`}
-            src={pokemon.sprites.other.dream_world.front_default}
-            width={400}
-            height={400}
-          />
-          <h2 className="PokemonName">{pokemon?.name.toUpperCase()}</h2>
-        </div>
+        <ImageCard
+        pokemon={pokemon}
+        />
+      </div>
+      <div className="rightSidePokemonDetails">
+        <PrincipalInformation
+        pokemon={pokemon}
+        />
       </div>
     </Container>
   );

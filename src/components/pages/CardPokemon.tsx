@@ -11,6 +11,8 @@ interface pokemon {
   data: pokemonGeneric;
 }
 
+
+
 export default function CardPokemon({ data }: pokemon) {
   const [completePokemonforCard, setCompletePokemonforCard] =
     useState<completePokemon>({
