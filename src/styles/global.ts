@@ -5,9 +5,17 @@ export const GlobalStyle = createGlobalStyle`
 :root {
   //nova paleta de coreas
   --bg: rgba(0,0,0,0.04);
+  --bgCard: #fff;
+  --P1A: #121212;
+  --P1B: #E0E0E0;
+
+  --boxShadow: 0px 0px 5px -1px rgba(0,0,0,0.3);
+
+  --radius1: 12px;
+  --radius2: 24px
   
   --warning: #FAAE42;
-  --btn-aceitar: #06D6A0;
+  --accept: #06D6A0;
   --offline: #E62965;
 
   
@@ -41,6 +49,8 @@ export const GlobalStyle = createGlobalStyle`
   }
   button {
     cursor: pointer;
+    border: none;
+    background-color: transparent;
   }
 
 `;

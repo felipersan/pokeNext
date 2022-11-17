@@ -5,7 +5,7 @@ interface pokemonProps{
 }
 
 export const Container = styled.button<pokemonProps>`
-background-color: transparent;
+background-color: var(--bgCard);
 cursor: pointer;
 height: 150px;
 border-radius: 10px;
