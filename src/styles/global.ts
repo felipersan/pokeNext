@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
   --boxShadow: 0px 0px 5px -1px rgba(0,0,0,0.3);
 
   --radius1: 12px;
-  --radius2: 24px
+  --radius2: 24px;
   
   --warning: #FAAE42;
   --accept: #06D6A0;
