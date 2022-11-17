@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { completePokemon, pokemonGeneric } from "../../interfaces/API/GET";
 import { useGetCompletePokemon } from "../../services/pokeApi/GET/useGetCompletePokemon";
@@ -35,7 +36,7 @@ export default function CardPokemon({ data }: pokemon) {
       types: [],
       weight: 0,
     });
-    const [pokemonSpeciesForCard, setPokemonSpeciesForCard] = useState<any>()
+  const [pokemonSpeciesForCard, setPokemonSpeciesForCard] = useState<any>();
 
   const { pokemonSpecies } = useGetPokemonSpecies(
     (completePokemonforCard?.id).toString()
@@ -54,7 +55,7 @@ export default function CardPokemon({ data }: pokemon) {
     }
   }, [pokemonSpecies]);
 
-  function pokemonColor(color:string) {
+  function pokemonColor(color: string) {
     switch (color) {
       case "black":
         return "#303030";
@@ -63,23 +64,23 @@ export default function CardPokemon({ data }: pokemon) {
       case "green":
         return "#49d0b2";
       case "yellow":
-        return ("#fdda6c");
+        return "#fdda6c";
       case "red":
-        return("#fd6b6c");
+        return "#fd6b6c";
       case "brown":
-        return("#a78876");
+        return "#a78876";
       case "grey":
-        return("#9195b0");
+        return "#9195b0";
       case "pink":
-        return("#f1c8cc");
+        return "#f1c8cc";
       case "purple":
-        return("#ae8eb5");
+        return "#ae8eb5";
       case "white":
-        return("#1212");
+        return "#1212";
       case "yellow":
-        return("#e8c250");
+        return "#e8c250";
       default:
-        return("#385fa3");
+        return "#385fa3";
     }
   }
 
@@ -87,22 +88,28 @@ export default function CardPokemon({ data }: pokemon) {
     setCompletePokemonforCard(completePokemon);
   }
 
-  console.log(pokemonColor(pokemonSpeciesForCard?.color?.name))
-
+  console.log(pokemonColor(pokemonSpeciesForCard?.color?.name));
 
   return (
     <>
-      <S.Container borderColor={pokemonColor(pokemonSpeciesForCard?.color?.name)}>
-        <Image
-          alt={`foto do pokemon`}
-          height={100}
-          width={100}
-          src={completePokemonforCard?.sprites?.front_default}
-          className={"pokemonImageProfile"}
-        />
-        <div className="nameContainer">
-          <p className="pokemonName">{completePokemonforCard?.name}</p>
-        </div>
+      <S.Container
+        borderColor={pokemonColor(pokemonSpeciesForCard?.color?.name)}
+      >
+        <Link
+          href={`/pokemon/${completePokemonforCard?.name}`}
+          className={"linkPokemonContainer"}
+        >
+          <Image
+            alt={`foto do pokemon`}
+            height={100}
+            width={100}
+            src={completePokemonforCard?.sprites?.front_default}
+            className={"pokemonImageProfile"}
+          />
+          <div className="nameContainer">
+            <p className="pokemonName">{completePokemonforCard?.name}</p>
+          </div>
+        </Link>
       </S.Container>
     </>
   );

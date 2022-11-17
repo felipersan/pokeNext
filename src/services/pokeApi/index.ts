@@ -33,5 +33,15 @@ class pokemonClass {
       console.log('erro de autenticação ===========>', error)
     }
   }
+
+  async getSearchPokemon(name: string) {
+    try {
+      const data: any = await pokeAPI.get(`pokemon/${name}`)
+      
+      return data
+    } catch (error) {
+      console.log('erro de autenticação ===========>', error)
+    }
+  }
 }
 export default new pokemonClass()

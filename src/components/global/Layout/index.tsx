@@ -1,3 +1,4 @@
+import { Main } from "./styles";
 import { ReactNode } from "react";
 import Header from "../Header";
 
@@ -9,9 +10,10 @@ export default function Layout({children}:any){
     return(
         <>
             <Header/>
-            <main>
+            <Main
+            >
                 {children}
-            </main>
+            </Main>
         </>
     )
 }
