@@ -2,8 +2,8 @@ export default function SearchIcon({ size = 14, color = "#4A427C" }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="1em"
-      height="1em"
+      width={size}
+      height={size}
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 24 24"
     >
