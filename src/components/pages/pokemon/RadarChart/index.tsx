@@ -97,8 +97,8 @@ export default function RadarPokemonChart({ pokemon }: props) {
           <Radar
             name="Mike"
             dataKey="A"
-            stroke="#8884d8"
-            fill="#8884d8"
+            stroke="var(--P1C)"
+            fill="var(--P1C)"
             fillOpacity={0.6}
           />
         </RadarChart>

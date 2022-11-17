@@ -1,5 +1,6 @@
 import { AnyARecord } from "dns";
 import Image from "next/image";
+import EvolutionChain from "../../components/pages/pokemon/EvolutionChain";
 import ImageCard from "../../components/pages/pokemon/ImageCard";
 import PrincipalInformation from "../../components/pages/pokemon/PrincipalInformation";
 import RadarPokemonChart from "../../components/pages/pokemon/RadarChart";
@@ -15,9 +16,16 @@ export async function getStaticProps(context: any) {
   ).then((response: any) => {
     return response.json();
   });
+  const species: any = await fetch(
+    `https://pokeapi.co/api/v2/pokemon-species/${params.name}`
+  ).then((response: any) => {
+    return response.json();
+  });
+  
   return {
     props: {
       pokemon,
+      species
     },
   };
 }
@@ -41,8 +49,7 @@ export async function getStaticPaths() {
   };
 }
 
-export default function pokemonName({ pokemon }: any) {
-  console.log(pokemon.sprites.other);
+export default function pokemonName({ pokemon, species }: any) {
   return (
     <Container>
       <div className="letSidePokemonDetails">
@@ -55,9 +62,17 @@ export default function pokemonName({ pokemon }: any) {
         pokemon={pokemon}
         />
         <div className="bottomSizeWithChart">
-          <RadarPokemonChart
-          pokemon={pokemon}
-          />
+          <div className="radarChartPokemon">
+            <RadarPokemonChart
+            pokemon={pokemon}
+            />
+          </div>
+          <div className="evolutionChain">
+            <EvolutionChain
+            pokemon={pokemon}
+            species={species}
+            />
+          </div>
         </div>
       </div>
     </Container>

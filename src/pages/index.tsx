@@ -50,7 +50,7 @@ const Home: NextPage = ({pokemonsArray}:any) => {
       <S.Container className="DisplayGridPokemon">
         <InfiniteScroll
         dataLength={offsetPokemon} //This is important field to render the next data
-        next={()=>{setOffsetPokemon(offsetPokemon + 20)}}
+        next={()=>{setOffsetPokemon(offsetPokemon + 2)}}
         hasMore={true}
         loader={<h4>Carregando...</h4>}
         endMessage={
