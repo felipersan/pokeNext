@@ -6,6 +6,7 @@ export const Container = styled.div`
     border-radius: var(--radius2);
     box-shadow: var(--boxShadow);
     width: 100%;
+    min-height: 100%;
 .cardImagePokemon{
         .pokemonTypes{
             position: absolute;

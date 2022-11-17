@@ -2,6 +2,7 @@ import { AnyARecord } from "dns";
 import Image from "next/image";
 import ImageCard from "../../components/pages/pokemon/ImageCard";
 import PrincipalInformation from "../../components/pages/pokemon/PrincipalInformation";
+import RadarPokemonChart from "../../components/pages/pokemon/RadarChart";
 import { searchPokemon } from "../../interfaces/API/GET";
 import API from "../../services/pokeAPI";
 
@@ -53,6 +54,11 @@ export default function pokemonName({ pokemon }: any) {
         <PrincipalInformation
         pokemon={pokemon}
         />
+        <div className="bottomSizeWithChart">
+          <RadarPokemonChart
+          pokemon={pokemon}
+          />
+        </div>
       </div>
     </Container>
   );

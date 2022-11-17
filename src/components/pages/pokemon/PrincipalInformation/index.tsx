@@ -27,7 +27,9 @@ export default function PrincipalInformation({ pokemon }: props) {
           console.log(row.move.name);
           if (key < 2) {
             return(
-                <p className="pokemonTypeValue">{row?.move?.name}</p>
+                <p 
+                key={key}
+                className="pokemonTypeValue">{row?.move?.name}</p>
 
             )
           } 
