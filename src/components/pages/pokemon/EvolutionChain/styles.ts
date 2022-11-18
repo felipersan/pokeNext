@@ -6,5 +6,6 @@ export const Container = styled.div`
   height: 100%;
   flex-direction: column;
   display: grid;
-  grid-template-rows: repeat(auto-fit, minmax(250px, 1.5fr));
+  grid-template-rows: repeat(auto-fit, minmax(150px, 1.5fr));
+  gap: 20px;
 `

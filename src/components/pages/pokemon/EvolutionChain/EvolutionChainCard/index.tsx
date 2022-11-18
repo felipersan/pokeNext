@@ -9,16 +9,18 @@ interface props {
 
 export default function EvolutionChainCard({ name }: props) {
   const { completePokemon } = useGetCompletePokemon(name)
-  console.log('pokemon evolução ', completePokemon)
   return (
     <Container>
-      <Link href={`/pokemon/${name}`}>
+      <Link href={`/pokemon/${name}`} className={'linkToPokemon'}>
         <Image
           alt={`imagem do pokemon ${name}`}
           src={completePokemon?.data.sprites?.front_default}
           height={100}
           width={100}
         />
+        <h3 className="pokemonName">
+          {completePokemon?.data?.name?.toUpperCase()}
+        </h3>
       </Link>
     </Container>
   )
