@@ -22,6 +22,8 @@ function RadarPokemonChart({ pokemon }: props) {
     }
   }, [pokemon])
 
+  console.log('teste')
+
   function handleDate(data: any) {
     let dataArrayRadarChart: Array<any> = []
     data.map((row: any, key: number) => {
