@@ -10,7 +10,7 @@ export const useGetPokemon = (offset: number) => {
     }
   )
   return {
-    pokemonsWithPagination: data as getPokemon,
+    pokemonsWithPagination: data as any,
     isLoadingReactions: isLoading as boolean,
     isErrorReactions: isError as boolean,
     isSuccessReactions: isSuccess as boolean | number

@@ -1,56 +1,56 @@
 import pokeAPI from '../pokeAPI'
-import { AxiosRequestConfig } from 'axios'
+import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
 import { getPokemon } from '../../interfaces/API/GET'
 
 class pokemonClass {
   async getPokemonWithPagination(offset: number) {
     try {
-      const data: getPokemon = await pokeAPI.get(
-        `pokemon?limit=5&offset=${offset}`
+      const data = pokeAPI.get<getPokemon | null>(
+        `pokemon?limit=50&offset=${offset}`
       )
-      return data
+
+      if (await data) return data
     } catch (error) {
-      console.log('erro de autenticação ===========>', error)
+      console.log('erro ao pegar os pokemons genéricos ===========>', error)
     }
   }
 
   async getCompletePokemon(name: string) {
     try {
-      const data: getPokemon = await pokeAPI.get(`pokemon/${name}`)
-      return data
+      const data = pokeAPI.get<getPokemon>(`pokemon/${name}`)
+      if (await data) return data
     } catch (error) {
-      console.log('erro de autenticação ===========>', error)
+      console.log('erro ao pegar pokemons completos ===========>', error)
     }
   }
 
   async getPokemonSpecies(id: string) {
     try {
-      const data: any = await pokeAPI.get(`pokemon-species/${id}`)
-      console.log(data)
-      return data
+      const data = pokeAPI.get(`pokemon-species/${id}`)
+      if (await data) return data
     } catch (error) {
-      console.log('erro de autenticação ===========>', error)
+      console.log('erro ao pegar pokemons species ===========>', error)
     }
   }
 
   async getSearchPokemon(name: string) {
     try {
       const data: any = await pokeAPI.get(`pokemon/${name}`)
-      
+
       return data
     } catch (error) {
-      console.log('erro de autenticação ===========>', error)
+      console.log('erro ao pegar pokemon página ===========>', error)
     }
   }
 
   async getEvolutionChain(id: string) {
     try {
       const data: any = await pokeAPI.get(`evolution-chain/${id}`)
-      
+
       return data
     } catch (error) {
-      console.log('erro de autenticação ===========>', error)
+      console.log('erro ao pegar evolução ===========>', error)
     }
   }
 }
