@@ -26,9 +26,7 @@ export default function Header() {
   async function searchPokemons(name: string) {
     if (name){
       router.push(`/search/${name}`)
-    } else if (!name){
-      router.push('/')
-    }
+    } 
   }
 
   return (
