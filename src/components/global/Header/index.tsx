@@ -6,9 +6,11 @@ import Link from "next/link";
 import InputDefault from "../../UI/InputDefault";
 import React, { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
+import { useRouter } from "next/router";
 
 export default function Header() {
   const [pokemonSearch, setPokemonSearch] = useState<string>("");
+  const router = useRouter()
 
   useEffect(()=>{
     debounced(pokemonSearch)
@@ -22,7 +24,11 @@ export default function Header() {
   );
 
   async function searchPokemons(name: string) {
-    console.log(name)
+    if (name){
+      router.push(`/search/${name}`)
+    } else if (!name){
+      router.push('/')
+    }
   }
 
   return (
@@ -38,6 +44,7 @@ export default function Header() {
         <h2 className="titleAplication">PokeNext</h2>
       </Link>
       <InputDefault
+        search={()=>{searchPokemons(pokemonSearch)}}
         value={pokemonSearch}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setPokemonSearch(e.target.value);
