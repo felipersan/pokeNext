@@ -18,7 +18,7 @@ export default function Header() {
 
   const debounced = useDebouncedCallback(
     (value) => {
-      searchPokemons(value);
+      searchPokemons(value.toLowerCase());
     },
     1000
   );
