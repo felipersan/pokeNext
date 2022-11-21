@@ -26,4 +26,20 @@ align-items: center;
         color: var(--P1A)
     }
 }
+@media(max-width: 500px){
+    justify-content: unset;
+    gap: 20px;
+    .leftSideHeader{
+        display: flex;
+        gap: 14px;
+        .pokemonLogoImage{
+            height: 22px;
+            width: 22px;
+        }
+        .titleAplication{
+            font-size: 18px;
+            line-height: 40px;
+        }
+    }
+}
 `

@@ -10,4 +10,10 @@ export const Container = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 10px;
   }
+  @media(max-width: 800px){
+    .infinite-scroll-component{
+
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+  }
 `

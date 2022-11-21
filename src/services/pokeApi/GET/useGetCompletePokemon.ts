@@ -7,6 +7,7 @@ export const useGetCompletePokemon = (name: string) => {
     ['getPokemonWithPagination', name],
     async () => {
       return await pokemonClass.getCompletePokemon(name)
+      
     }
   )
   return {
