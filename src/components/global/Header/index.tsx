@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { LoadingIcon, SearchIcon } from "../../../../public/assets/images/icons";
 
 export default function Header() {
-  const [pokemonSearch, setPokemonSearch] = useState<string>("");
+  const [pokemonSearch, setPokemonSearch] = useState<string >("");
   const [loadSearch, setLoadSearch] = useState<boolean>(false)
   const router = useRouter()
 
@@ -37,7 +37,7 @@ export default function Header() {
 
   return (
     <Container>
-      <Link className="leftSideHeader" href={"/"}>
+      <Link className="leftSideHeader" href={"/"} onClick={()=>{setPokemonSearch("")}}>
         <Image
           className="pokemonLogoImage"
           alt="logo pokemon"
