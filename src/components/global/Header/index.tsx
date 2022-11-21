@@ -29,7 +29,7 @@ export default function Header() {
   async function searchPokemons(name: string) {
     if (name){
       setLoadSearch(true)
-      router.push(`/search/${name}`).then(()=>{
+      router.push(`/pokemon/${name}`).then(()=>{
         setLoadSearch(false)
       })
     } 
