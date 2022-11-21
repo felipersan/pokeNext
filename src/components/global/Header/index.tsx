@@ -18,7 +18,7 @@ export default function Header() {
 
   const debounced = useDebouncedCallback(
     (value) => {
-      searchPokemons(value.toLowerCase());
+      searchPokemons(value);
     },
     1000
   );
@@ -45,7 +45,7 @@ export default function Header() {
         search={()=>{searchPokemons(pokemonSearch)}}
         value={pokemonSearch}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setPokemonSearch(e.target.value);
+          setPokemonSearch(e.target.value.toLowerCase());
         }}
         placeholder={"Ex: Bubassaur"}
       />
