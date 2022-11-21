@@ -4,7 +4,7 @@ export const Container = styled.div`
 position: relative;
 display: flex;
 justify-content: flex-end;
-width: clamp(190px, 40%, 500px);
+width: clamp(250px, 40%, 500px);
 .searchIconForInput{
     position: absolute;
     top: 0;
