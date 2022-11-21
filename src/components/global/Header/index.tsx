@@ -7,14 +7,17 @@ import InputDefault from "../../UI/InputDefault";
 import React, { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { useRouter } from "next/router";
+import { LoadingIcon, SearchIcon } from "../../../../public/assets/images/icons";
 
 export default function Header() {
   const [pokemonSearch, setPokemonSearch] = useState<string>("");
+  const [loadSearch, setLoadSearch] = useState<boolean>(false)
   const router = useRouter()
 
   useEffect(()=>{
     debounced(pokemonSearch)
   },[pokemonSearch])
+
 
   const debounced = useDebouncedCallback(
     (value) => {
@@ -25,7 +28,10 @@ export default function Header() {
 
   async function searchPokemons(name: string) {
     if (name){
-      router.push(`/search/${name}`)
+      setLoadSearch(true)
+      router.push(`/search/${name}`).then(()=>{
+        setLoadSearch(false)
+      })
     } 
   }
 
@@ -42,6 +48,7 @@ export default function Header() {
         <h2 className="titleAplication">PokeNext</h2>
       </Link>
       <InputDefault
+        icon={loadSearch ? <LoadingIcon size={20}/> : <SearchIcon size={20}/>}
         search={()=>{searchPokemons(pokemonSearch)}}
         value={pokemonSearch}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
