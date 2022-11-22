@@ -37,7 +37,7 @@ export async function getStaticProps(context: any) {
 export async function getStaticPaths() {
   let paths: any = [];
 
-  await API.get(`pokemon?limit=200&offset=0`).then((response: any) => {
+  await API.get(`pokemon?limit=1400&offset=0`).then((response: any) => {
     response.data.results.map((row: any, key: number) => {
       if (row !== "voltorb") {
         let newObject = {
