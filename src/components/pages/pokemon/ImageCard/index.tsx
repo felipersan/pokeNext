@@ -1,8 +1,8 @@
-import Image from 'next/image'
-import { Container } from './styles'
+import Image from "next/image";
+import { Container } from "./styles";
 
 interface props {
-  pokemon: any
+  pokemon: any;
 }
 
 export default function ImageCard({ pokemon }: props) {
@@ -15,17 +15,19 @@ export default function ImageCard({ pokemon }: props) {
               <span key={key} className="cardTypePokemon">
                 {row.type.name.toUpperCase()}
               </span>
-            )
+            );
           })}
         </div>
-        <Image
-          alt={`imagem do pokemon ${pokemon?.name}`}
-          src={pokemon.sprites.other.dream_world.front_default}
-          width={400}
-          height={400}
-        />
+        {pokemon?.sprites?.other?.dream_world?.front_default && (
+          <Image
+            alt={`imagem do pokemon ${pokemon?.name}`}
+            src={pokemon?.sprites?.other?.dream_world?.front_default}
+            width={400}
+            height={400}
+          />
+        )}
         <h2 className="PokemonName">{pokemon?.name.toUpperCase()}</h2>
       </div>
     </Container>
-  )
+  );
 }

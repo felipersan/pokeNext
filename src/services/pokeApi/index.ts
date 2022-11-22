@@ -4,10 +4,10 @@ import { useRouter } from 'next/router'
 import { getPokemon } from '../../interfaces/API/GET'
 
 class pokemonClass {
-  async getPokemonWithPagination(offset: number) {
+  async getPokemonWithPagination(offset: number, limit:number = 50) {
     try {
       const data = pokeAPI.get<getPokemon | null>(
-        `pokemon?limit=50&offset=${offset}`
+        `pokemon?limit=${limit}&offset=${offset}`
       )
 
       if (await data) return data

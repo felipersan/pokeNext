@@ -1,73 +1,132 @@
 import { AnyARecord } from 'dns'
-import Image from 'next/image'
-import EvolutionChain from '../../components/pages/pokemon/EvolutionChain'
-import ImageCard from '../../components/pages/pokemon/ImageCard'
-import PrincipalInformation from '../../components/pages/pokemon/PrincipalInformation'
-import RadarPokemonChart from '../../components/pages/pokemon/RadarChart'
-import { searchPokemon } from '../../interfaces/API/GET'
-import API from '../../services/pokeAPI'
+import { NextPage } from 'next'
+import Head from 'next/head'
+import { useEffect, useState } from 'react'
+import { QueryCache } from 'react-query'
+import styles from '../../styles/Home.module.css'
 
-import { Container } from '../../styles/pages/pokemon/name/styles'
+import { pokemonGeneric, searchPokemon } from '../../interfaces/API/GET'
+import { useGetPokemon } from '../../services/pokeApi/GET/useGetPokemon'
 
-export async function getStaticProps(context: any) {
-  const { params } = context
-  const pokemon: searchPokemon = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${params.name}`
-  ).then((response: any) => {
-    return response.json()
-  })
-  const species: any = await fetch(
-    `https://pokeapi.co/api/v2/pokemon-species/${params.name}`
-  ).then((response: any) => {
-    return response.json()
-  })
+import * as S from '../../styles/pages/search/styles'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import CardPokemon from '../../components/pages/CardPokemon'
+import { useRouter } from 'next/router'
 
-  return {
-    props: {
-      pokemon,
-      species
+
+// export async function getStaticProps(context: any) {
+//   const { params } = context
+//   const pokemon: searchPokemon = await fetch(
+//     `https://pokeapi.co/api/v2/pokemon/${params.name}`
+//   ).then((response: any) => {
+//     return response.json()
+//   })
+//   const species: any = await fetch(
+//     `https://pokeapi.co/api/v2/pokemon-species/${params.name}`
+//   ).then((response: any) => {
+//     return response.json()
+//   })
+
+//   return {
+//     props: {
+//       pokemon,
+//       species
+//     }
+//   }
+// }
+
+// export async function getStaticPaths() {
+//   let paths: any = []
+
+//   await API.get(`pokemon?limit=200&offset=0`).then((response: any) => {
+//     response.data.results.map((row: any, key: number) => {
+//       if (row !== 'voltorb') {
+//         let newObject = {
+//           params: {
+//             name: row?.name
+//           }
+//         }
+//         paths.push(newObject)
+//       }
+//     })
+//   })
+//   return {
+//     paths,
+//     fallback: false
+//   }
+// }
+
+const Search: NextPage = ({ pokemonsArray }: any) => {
+  const [offsetPokemon, setOffsetPokemon] = useState<number>(0)
+  const [pokemons, setPokemons] = useState<any[]>([])
+
+  const { pokemonsWithPagination } = useGetPokemon(offsetPokemon, 1154)
+
+  const router = useRouter()
+  const {name} = router.query
+
+  useEffect(()=>{
+    if (pokemonsWithPagination){
+      handleSearchPokemon(pokemonsWithPagination.data.results, name as string)
     }
+  },[name])
+
+  useEffect(()=>{
+    if (pokemonsWithPagination){
+      handleSearchPokemon(pokemonsWithPagination.data.results, name as string)
+    }
+  },[pokemonsWithPagination])
+
+  function handleSearchPokemon(pokemonArray:Array<pokemonGeneric>, pokemonName:string){
+    let newArrayPokemon = pokemonArray.filter((row:pokemonGeneric)=>{
+      if (row.name.includes(name as unknown as string )) return(row)
+    })
+    setPokemons(newArrayPokemon)
+    
   }
-}
 
-export async function getStaticPaths() {
-  let paths: any = []
-
-  await API.get(`pokemon?limit=200&offset=0`).then((response: any) => {
-    response.data.results.map((row: any, key: number) => {
-      if (row !== 'voltorb') {
-        let newObject = {
-          params: {
-            name: row?.name
-          }
-        }
-        paths.push(newObject)
+  async function clearCache() {
+    const queryCache = new QueryCache({
+      onError: error => {
+        console.log(error)
+      },
+      onSuccess: data => {
+        console.log(data)
       }
     })
-  })
-  return {
-    paths,
-    fallback: false
-  }
-}
 
-export default function pokemonName({ pokemon, species }: any) {
+    const query = queryCache.clear()
+  }
+
   return (
-    <Container>
-      <div className="letSidePokemonDetails">
-        <ImageCard pokemon={pokemon} />
-      </div>
-      <div className="rightSidePokemonDetails">
-        <PrincipalInformation pokemon={pokemon} />
-        <div className="bottomSizeWithChart">
-          <div className="radarChartPokemon">
-            <RadarPokemonChart pokemon={pokemon} />
-          </div>
-          <div className="evolutionChain">
-            <EvolutionChain pokemon={pokemon} species={species} />
-          </div>
-        </div>
-      </div>
-    </Container>
+    <div className={styles.container}>
+      <Head>
+        <title>Create Next App</title>
+        <meta name="description" content="Generated by create next app" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <S.Container className="DisplayGridPokemon">
+        <InfiniteScroll
+          dataLength={offsetPokemon} //This is important field to render the next data
+          next={() => {
+            setOffsetPokemon(offsetPokemon + 50)
+          }}
+          hasMore={true}
+          loader={<h4>Carregando...</h4>}
+          endMessage={
+            <p style={{ textAlign: 'center' }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          }
+        >
+          {pokemons?.map((row: any, key: number) => (
+            <CardPokemon key={key} data={row as pokemonGeneric}></CardPokemon>
+          ))}
+        </InfiniteScroll>
+      </S.Container>
+    </div>
   )
 }
+
+export default Search

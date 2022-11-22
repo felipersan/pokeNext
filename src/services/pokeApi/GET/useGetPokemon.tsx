@@ -2,11 +2,11 @@ import { useQuery } from 'react-query'
 import { getPokemon } from '../../../interfaces/API/GET'
 import pokemonClass from '../index'
 
-export const useGetPokemon = (offset: number) => {
+export const useGetPokemon = (offset: number, limit:number) => {
   const { data, isLoading, isError, isSuccess } = useQuery(
     ['getPokemonWithPagination', offset],
     async () => {
-      return await pokemonClass.getPokemonWithPagination(offset)
+      return await pokemonClass.getPokemonWithPagination(offset, limit)
     }
   )
   return {

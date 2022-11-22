@@ -7,49 +7,58 @@ import InputDefault from "../../UI/InputDefault";
 import React, { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { useRouter } from "next/router";
-import { LoadingIcon, SearchIcon } from "../../../../public/assets/images/icons";
+import {
+  LoadingIcon,
+  SearchIcon,
+} from "../../../../public/assets/images/icons";
 
 export default function Header() {
-  const [pokemonSearch, setPokemonSearch] = useState<string >("");
-  const [loadSearch, setLoadSearch] = useState<boolean>(false)
-  const router = useRouter()
+  const [pokemonSearch, setPokemonSearch] = useState<string>("");
+  const [loadSearch, setLoadSearch] = useState<boolean>(false);
+  const router = useRouter();
 
-  useEffect(()=>{
-    debounced(pokemonSearch)
-  },[pokemonSearch])
+  useEffect(() => {
+    debounced(pokemonSearch);
+  }, [pokemonSearch]);
 
-
-  const debounced = useDebouncedCallback(
-    (value) => {
-      searchPokemons(value);
-    },
-    1000
-  );
+  const debounced = useDebouncedCallback((value) => {
+    searchPokemons(value);
+  }, 1000);
 
   async function searchPokemons(name: string) {
-    if (name){
-      setLoadSearch(true)
-      router.push(`/pokemon/${name}`).then(()=>{
-        setLoadSearch(false)
-      })
-    } 
+    if (name) {
+      setLoadSearch(true);
+      router.push(`/search/${name}`).then(() => {
+        setLoadSearch(false);
+      });
+    }
   }
 
   return (
     <Container>
-      <Link className="leftSideHeader" href={"/"} onClick={()=>{setPokemonSearch("")}}>
-        <Image
-          className="pokemonLogoImage"
-          alt="logo pokemon"
-          src={PokemonImage}
-          height={100}
-          width={100}
-        />
+      <Link
+        className="leftSideHeader"
+        href={"/"}
+        onClick={() => {
+          setPokemonSearch("");
+        }}
+      >
+        {PokemonImage && (
+          <Image
+            className="pokemonLogoImage"
+            alt="logo pokemon"
+            src={PokemonImage}
+            height={100}
+            width={100}
+          />
+        )}
         <h2 className="titleAplication">PokeNext</h2>
       </Link>
       <InputDefault
-        icon={loadSearch ? <LoadingIcon size={20}/> : <SearchIcon size={20}/>}
-        search={()=>{searchPokemons(pokemonSearch)}}
+        icon={loadSearch ? <LoadingIcon size={20} /> : <SearchIcon size={20} />}
+        search={() => {
+          searchPokemons(pokemonSearch);
+        }}
         value={pokemonSearch}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setPokemonSearch(e.target.value.toLowerCase());
