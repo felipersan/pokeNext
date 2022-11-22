@@ -54,17 +54,21 @@ export default function Header() {
         )}
         <h2 className="titleAplication">PokeNext</h2>
       </Link>
-      <InputDefault
-        icon={loadSearch ? <LoadingIcon size={20} /> : <SearchIcon size={20} />}
-        search={() => {
-          searchPokemons(pokemonSearch);
-        }}
-        value={pokemonSearch}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setPokemonSearch(e.target.value.toLowerCase());
-        }}
-        placeholder={"Ex: Bubassaur"}
-      />
+      <div className="containerInputDefault">
+        <InputDefault
+          icon={
+            loadSearch ? <LoadingIcon size={20} /> : <SearchIcon size={20} />
+          }
+          search={() => {
+            searchPokemons(pokemonSearch);
+          }}
+          value={pokemonSearch}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setPokemonSearch(e.target.value.toLowerCase());
+          }}
+          placeholder={"Ex: Bubassaur"}
+        />
+      </div>
     </Container>
   );
 }

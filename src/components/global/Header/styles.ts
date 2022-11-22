@@ -5,8 +5,7 @@ background-color: var(--bg);
 padding: 10px 30px;
 box-shadow: var(--boxShadow);
 display: flex;
-justify-content: space-between;
-align-items: center;
+justify-content: space-around;
 .leftSideHeader{
     display: flex;
     align-items: center;
@@ -25,6 +24,12 @@ align-items: center;
         font-weight: 700;
         color: var(--P1A)
     }
+}
+.containerInputDefault{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 @media(max-width: 500px){
     justify-content: unset;

@@ -22,5 +22,5 @@ outline: none;
 border: 1px solid var(--P1B);
 border-radius: var(--radius1);
 width: 100%;
-/* width: 400px; */
+margin-right: 10px;
 `
