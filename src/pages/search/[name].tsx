@@ -22,7 +22,7 @@ export async function getStaticProps(context: any) {
   const { params } = context;
 
   const apiPokemon: any = await fetch(
-    `https://pokeapi.co/api/v2/pokemon?limit=1400&offset=0`
+    `https://pokeapi.co/api/v2/pokemon?limit=400&offset=0`
   ).then((response: any) => {
     return response.json();
   });
