@@ -13,49 +13,6 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import CardPokemon from '../../components/pages/CardPokemon'
 import { useRouter } from 'next/router'
 
-
-// export async function getStaticProps(context: any) {
-//   const { params } = context
-//   const pokemon: searchPokemon = await fetch(
-//     `https://pokeapi.co/api/v2/pokemon/${params.name}`
-//   ).then((response: any) => {
-//     return response.json()
-//   })
-//   const species: any = await fetch(
-//     `https://pokeapi.co/api/v2/pokemon-species/${params.name}`
-//   ).then((response: any) => {
-//     return response.json()
-//   })
-
-//   return {
-//     props: {
-//       pokemon,
-//       species
-//     }
-//   }
-// }
-
-// export async function getStaticPaths() {
-//   let paths: any = []
-
-//   await API.get(`pokemon?limit=200&offset=0`).then((response: any) => {
-//     response.data.results.map((row: any, key: number) => {
-//       if (row !== 'voltorb') {
-//         let newObject = {
-//           params: {
-//             name: row?.name
-//           }
-//         }
-//         paths.push(newObject)
-//       }
-//     })
-//   })
-//   return {
-//     paths,
-//     fallback: false
-//   }
-// }
-
 const Search: NextPage = ({ pokemonsArray }: any) => {
   const [offsetPokemon, setOffsetPokemon] = useState<number>(0)
   const [pokemons, setPokemons] = useState<any[]>([])
@@ -107,23 +64,10 @@ const Search: NextPage = ({ pokemonsArray }: any) => {
       </Head>
 
       <S.Container className="DisplayGridPokemon">
-        <InfiniteScroll
-          dataLength={offsetPokemon} //This is important field to render the next data
-          next={() => {
-            setOffsetPokemon(offsetPokemon + 50)
-          }}
-          hasMore={true}
-          loader={<h4>Carregando...</h4>}
-          endMessage={
-            <p style={{ textAlign: 'center' }}>
-              <b>Yay! You have seen it all</b>
-            </p>
-          }
-        >
+        
           {pokemons?.map((row: any, key: number) => (
             <CardPokemon key={key} data={row as pokemonGeneric}></CardPokemon>
           ))}
-        </InfiniteScroll>
       </S.Container>
     </div>
   )
