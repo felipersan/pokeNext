@@ -101,3 +101,24 @@ export function LoadingIcon({ size = 14, color = "#4A427C" }) {
     </svg>
   );
 }
+
+export function ChevronTopIcon({ size = 14, color = "#4A427C" }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 32 32"
+    >
+      <path
+        fill="none"
+        stroke={color}
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M30 20L16 8L2 20"
+      />
+    </svg>
+  );
+}

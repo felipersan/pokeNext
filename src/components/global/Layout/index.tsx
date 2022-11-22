@@ -1,19 +1,36 @@
 import { Main } from "./styles";
-import { ReactNode } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import Header from "../Header";
+import GoToTop from "../GoToTop";
+import { useRouter } from "next/router";
 
 interface props {
-    children: ReactNode
+  children: ReactNode;
 }
 
-export default function Layout({children}:any){
-    return(
-        <>
-            <Header/>
-            <Main
-            >
-                {children}
-            </Main>
-        </>
-    )
+export default function Layout({ children }: props) {
+  const [scroll, setScroll] = useState<boolean>(false);
+  const router = useRouter()
+
+  window.addEventListener("scroll", () => {
+    setScroll(true);
+  });
+
+  useEffect(()=>{
+    setScroll(false)
+  },[router.pathname])
+
+  return (
+    <>
+      <Header />
+      <Main>
+        {children}
+        {scroll && (
+          <div className="goToTopComponent">
+            <GoToTop />
+          </div>
+        )}
+      </Main>
+    </>
+  );
 }
