@@ -6,7 +6,7 @@ export default function Teste() {
     getObject();
   }, []);
   async function getObject() {
-    await API.get(`pokemon?limit=13410&offset=0`).then((response: any) => {
+    await API.get(`pokemon?limit=4000&offset=0`).then((response: any) => {
       let paths:any = [];
       response.data.results.map((row: any) => {
         let newObject = {
