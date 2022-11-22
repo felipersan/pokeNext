@@ -8,14 +8,25 @@ interface buttonProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export default function InputDefault({ search, icon, ...props }: buttonProps) {
+
+  function pesquisar(e:any){
+    e.preventDefault()
+    search()
+
+  }
   return (
-      <form onSubmit={search}>
-    <Container>
+    <form onSubmit={pesquisar}>
+      <Container>
         <Input {...props} />
-        <button className="searchIconForInput" onClick={()=>{SubmitEvent}}>
+        <button
+          className="searchIconForInput"
+          onClick={() => {
+            SubmitEvent;
+          }}
+        >
           {icon}
         </button>
-    </Container>
-      </form>
+      </Container>
+    </form>
   );
 }
