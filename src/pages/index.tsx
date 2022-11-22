@@ -56,23 +56,10 @@ const Home: NextPage = ({ pokemonsArray }: any) => {
       </Head>
 
       <S.Container className="DisplayGridPokemon">
-        <InfiniteScroll
-          dataLength={offsetPokemon} //This is important field to render the next data
-          next={() => {
-            setOffsetPokemon(offsetPokemon + 50)
-          }}
-          hasMore={true}
-          loader={<h4>Carregando...</h4>}
-          endMessage={
-            <p style={{ textAlign: 'center' }}>
-              <b>Yay! You have seen it all</b>
-            </p>
-          }
-        >
+        
           {pokemons?.map((row: any, key: number) => (
             <CardPokemon key={key} data={row as pokemonGeneric}></CardPokemon>
           ))}
-        </InfiniteScroll>
       </S.Container>
     </div>
   )
