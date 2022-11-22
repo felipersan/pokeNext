@@ -10,15 +10,17 @@ interface props {
 
 export default function Layout({ children }: props) {
   const [scroll, setScroll] = useState<boolean>(false);
-  const router = useRouter()
+  const router = useRouter();
 
-  window.addEventListener("scroll", () => {
-    setScroll(true);
-  });
-
-  useEffect(()=>{
-    setScroll(false)
-  },[router.pathname])
+  useEffect(() => {
+    const scrollPage = window.addEventListener("scroll", () => {
+      setScroll(true);
+    });
+  }, []);
+  
+  useEffect(() => {
+    setScroll(false);
+  }, [router.pathname]);
 
   return (
     <>
