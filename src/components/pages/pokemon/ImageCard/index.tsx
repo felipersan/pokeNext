@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useEffect } from "react";
 import { Container } from "./styles";
 
 interface props {
@@ -6,6 +7,16 @@ interface props {
 }
 
 export default function ImageCard({ pokemon }: props) {
+  let width = 0
+  if (typeof window !== 'undefined') {
+    width = window.innerWidth
+  }
+
+  function pokemonPhotoSize(pageWidth:number){
+    if (pageWidth < 800) return 300
+    else return 400
+  }
+
   return (
     <Container>
       <div className="cardImagePokemon">
@@ -22,8 +33,8 @@ export default function ImageCard({ pokemon }: props) {
           <Image
             alt={`imagem do pokemon ${pokemon?.name}`}
             src={pokemon?.sprites?.other?.dream_world?.front_default}
-            width={400}
-            height={400}
+            width={pokemonPhotoSize(width)}
+            height={pokemonPhotoSize(width)}
           />
         )}
         <h2 className="PokemonName">{pokemon?.name.toUpperCase()}</h2>

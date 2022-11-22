@@ -28,4 +28,23 @@ export const Container = styled.div`
       }
     }
   }
+
+  @media(max-width: 800px){
+    flex-direction: column;
+    .letSidePokemonDetails{
+      width: 100%;
+    }
+    .rightSidePokemonDetails{
+      width: 100%;
+      .bottomSizeWithChart{
+        flex-direction: column;
+        .radarChartPokemon{
+          width: 100%;
+        }
+        .evolutionChain{
+          width: 100%;
+        }
+      }
+    }
+  }
 `

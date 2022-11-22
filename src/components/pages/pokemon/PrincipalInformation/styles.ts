@@ -10,18 +10,55 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .pokemonInfos{
+  .divMobile {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    .pokemonTypeData{
+    flex: 3;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    .pokemonInfos {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .pokemonTypeData {
         font-size: 18px;
         font-weight: 700;
-    }
-    .pokemonTypeValue{
+      }
+      .pokemonTypeValue {
         font-size: 18px;
         font-weight: 400;
         color: var(--P1C);
+      }
+    }
+  }
+  .pokemonInfos {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .pokemonTypeData {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .pokemonTypeValue {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--P1C);
+    }
+  }
+  @media(max-width: 800px){
+    height: 140px;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    .divMobile{
+      flex: 1;
+      width: 100%;
+    }
+    .pokemonInfos{
+      flex: 1;
     }
   }
 `;
