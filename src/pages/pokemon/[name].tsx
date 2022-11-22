@@ -15,16 +15,20 @@ import { Container } from "../../styles/pages/pokemon/name/styles";
 
 export async function getStaticProps(context: any) {
   const { params } = context;
-  const pokemon: searchPokemon = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${params.name}`
-  ).then((response: any) => {
-    return response.json();
-  });
-  const species: any = await fetch(
-    `https://pokeapi.co/api/v2/pokemon-species/${params.name}`
-  ).then((response: any) => {
-    return response.json();
-  });
+  let pokemon: any;
+  let species: any;
+  if (params.name.includes("-") === false) {
+    pokemon = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${params.name}`
+    ).then((response: any) => {
+      return response.json();
+    });
+    species = await fetch(
+      `https://pokeapi.co/api/v2/pokemon-species/${params.name}`
+    ).then((response: any) => {
+      return response.json();
+    });
+  }
 
   return {
     props: {
@@ -39,7 +43,7 @@ export async function getStaticPaths() {
 
   await API.get(`pokemon?limit=1400&offset=0`).then((response: any) => {
     response.data.results.map((row: any, key: number) => {
-      if (row !== "voltorb") {
+      if (row.name.includes('-') == false) {
         let newObject = {
           params: {
             name: row?.name,
@@ -62,10 +66,7 @@ const Pokemon: NextPage = ({ pokemon, species }: any) => {
     <div className={styles.container}>
       <Head>
         <title>Pokemon - {name}</title>
-        <meta
-          name="description"
-          content={`Página do pokemon - ${name}`}
-        />
+        <meta name="description" content={`Página do pokemon - ${name}`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
@@ -86,7 +87,6 @@ const Pokemon: NextPage = ({ pokemon, species }: any) => {
       </Container>
     </div>
   );
-}
+};
 
 export default Pokemon;
-
