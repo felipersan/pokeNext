@@ -14,7 +14,7 @@ const Home: NextPage = ({ pokemonsArray }: any) => {
   const [offsetPokemon, setOffsetPokemon] = useState<number>(0)
   const [pokemons, setPokemons] = useState<any[]>([])
 
-  const { pokemonsWithPagination } = useGetPokemon(offsetPokemon)
+  const { pokemonsWithPagination } = useGetPokemon(offsetPokemon, 50)
 
   useEffect(() => {
     if (pokemonsWithPagination) {
