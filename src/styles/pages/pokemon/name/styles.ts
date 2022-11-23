@@ -4,7 +4,7 @@ export const Container = styled.div`
   padding: 20px;
   display: flex;
   gap: 20px;
-  .letSidePokemonDetails {
+  .letSidePokemonDetails { 
     width: 35%;
     min-height: 100%;
   }
@@ -40,6 +40,7 @@ export const Container = styled.div`
         flex-direction: column;
         .radarChartPokemon{
           width: 100%;
+          height: 300px;
         }
         .evolutionChain{
           width: 100%;
