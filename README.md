@@ -1,4 +1,4 @@
-# Projeyto em NextJs utilizando as seguintes Tecnologias
+# Projeto em NextJs utilizando as seguintes Tecnologias
 
 ## Consumo da api do https://pokeapi.co/ para listagem dos pokemons
 
@@ -15,8 +15,8 @@
 8. Use-debounce
 9. Es-lint
 
-## Criação de péginas estáticas
+## Criação de páginas estáticas
 ### Nas páginas de pokemon e search foi aplicado o uso do getStaticProps e getStaticPaths
 
-## Vídeo de demosntração do projeto:
-[e511ca7b-ea5a-4cdf-9684-b989b9ac8c82.webm](https://user-images.githubusercontent.com/99933188/203614569-8f77f971-b5fa-4f78-9261-564649735aca.webm)
+## Vídeo de demonstração do projeto:
+[198711f4-ff7c-4d7c-80ed-46cad4464a70.webm](https://user-images.githubusercontent.com/99933188/203615162-c9e04076-4ee7-4b68-bb74-20a38fa25502.webm)
