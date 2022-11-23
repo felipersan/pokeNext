@@ -1,34 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Projeto em NextJs utilizando as seguintes Tecnologias
 
-## Getting Started
+## Consumo da api do https://pokeapi.co/ para listagem dos pokemons
 
-First, run the development server:
+## Acesse o deploy do projeto no link: https://poke-next-gamma.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Utilização das seguintes tecnologias:
+1. Typescript
+2. React JS
+3. Next Js
+4. Axios (consumo da api https://pokeapi.co/)
+5. React Query
+6. Recharts
+7. Styled Components
+8. Use-debounce
+9. Es-lint
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Criação de páginas estáticas
+### Nas páginas de pokemon e search foi aplicado o uso do getStaticProps e getStaticPaths
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Vídeo de demonstração do projeto:
+[198711f4-ff7c-4d7c-80ed-46cad4464a70.webm](https://user-images.githubusercontent.com/99933188/203615162-c9e04076-4ee7-4b68-bb74-20a38fa25502.webm)
